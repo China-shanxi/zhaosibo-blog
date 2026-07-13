@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赵思博的小博客 | 初二游戏少年</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background: #12141c;
+            color: #e6e6e6;
+            line-height: 1.7;
+        }
+        /* 导航栏 */
+        nav {
+            background: #1a1d29;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 2px solid #4068ff;
+        }
+        .nav-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4068ff;
+        }
+        .nav-a a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 24px;
+            transition: 0.2s;
+        }
+        .nav-a a:hover {
+            color: #4068ff;
+        }
+        /* 主容器 */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        /* 个人名片 */
+        .card {
+            background: #1a1d29;
+            border-radius: 14px;
+            padding: 30px;
+            border-left: 5px solid #4068ff;
+            margin-bottom: 40px;
+        }
+        .card h2 {
+            color: #4068ff;
+            margin-bottom: 15px;
+        }
+        .tag-box span {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #272c3b;
+            border-radius: 20px;
+            margin: 6px 8px 6px 0;
+            font-size: 14px;
+        }
+        /* 板块通用 */
+        .block {
+            background: #1a1d29;
+            border-radius: 14px;
+            padding: 26px;
+            margin-bottom: 30px;
+        }
+        .block h3 {
+            border-bottom: 1px solid #2c3142;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #7393ff;
+        }
+        /* 随笔卡片 */
+        .article-item {
+            padding: 14px;
+            background: #222633;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+        .article-item h4 {
+            color: #a0b8ff;
+            margin-bottom: 6px;
+        }
+        .time-text {
+            font-size: 13px;
+            color: #888;
+        }
+        /* 留言板 */
+        #msg-input {
+            width: 100%;
+            background: #222633;
+            border: 1px solid #33394d;
+            border-radius: 8px;
+            padding: 12px;
+            color: #fff;
+            min-height: 100px;
+            margin-bottom: 12px;
+            resize: none;
+        }
+        #send-btn {
+            padding: 10px 26px;
+            background: #4068ff;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .msg-item {
+            padding: 10px 14px;
+            background: #222633;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-size: 14px;
+            margin-top: 60px;
+        }
+        /* 倒计时样式 */
+        .count-down {
+            display: flex;
+            gap: 12px;
+            margin-top:15px;
+        }
+        .count-item {
+            background:#272c3b;
+            padding:8px 14px;
+            border-radius:6px;
+            text-align:center;
+        }
+        .count-num {
+            font-size:22px;
+            color:#4068ff;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+<!-- 导航栏 -->
+<nav>
+    <div class="nav-wrap">
+        <div class="logo">赵思博的小站</div>
+        <div class="nav-a">
+            <a href="#about">关于我</a>
+            <a href="#game">游戏日常</a>
+            <a href="#study">学习随笔</a>
+            <a href="#message">留言板</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- 自我介绍 -->
+    <div class="card" id="about">
+        <h2>你好，我是赵思博</h2>
+        <p>年龄：16岁 | 年级：初中八年级</p>
+        <p>性格普通男生，上课很难静下心，成绩不太理想，平时最大爱好就是打游戏。</p>
+        <p>知道学习很重要，但总是控制不住想玩，慢慢调整自己，希望以后能平衡游戏和学习。</p>
+        <div class="tag-box" style="margin-top:15px;">
+            <span>初二学生</span>
+            <span>游戏爱好者</span>
+            <span>普通人日常</span>
+            <span>慢慢变好</span>
+        </div>
+        <div class="count-down">
+            <div class="count-item">
+                <div class="count-num" id="d">00</div>
+                <div>天</div>
+            </div>
+            <div class="count-item">
+                <div class="count-num" id="h">00</div>
+                <div>时</div>
+            </div>
+            <div class="count-item">
+                <div class="count-num" id="m">00</div>
+                <div>分</div>
+            </div>
+            <div class="count-item">
+                <div class="count-num" id="s">00</div>
+            </div>
+            <div style="margin-left:10px;line-height:45px;">距离下次放假</div>
+        </div>
+    </div>
+
+    <!-- 游戏日常 -->
+    <div class="block" id="game">
+        <h3>🎮 我的游戏日常</h3>
+        <div class="article-item">
+            <h4>周末放松，打游戏缓解压力</h4>
+            <div class="time-text">2026.07.14</div>
+            <p>平时上学压力挺大，写完作业就想打开游戏放松一会。喜欢竞技类游戏，虽然技术一般，但和朋友组队很开心。</p>
+        </div>
+        <div class="article-item">
+            <h4>游戏和学习需要分开</h4>
+            <div class="time-text">2026.07.10</div>
+            <p>反思自己，经常因为熬夜打游戏第二天上课犯困，听课跟不上，成绩越来越差，以后要规定游戏时间，不能贪玩。</p>
+        </div>
+    </div>
+
+    <!-- 学习随笔 -->
+    <div class="block" id="study">
+        <h3>📖 学习碎碎念</h3>
+        <div class="article-item">
+            <h4>成绩不好，但不想一直摆烂</h4>
+            <div class="time-text">2026.07.12</div>
+            <p>八年级知识越来越难，上课容易走神，作业经常拖到最后。明白现在不努力，以后会后悔，打算一点点补基础，少玩一点游戏。</p>
+        </div>
+        <div class="article-item">
+            <h4>给自己定小目标</h4>
+            <div class="time-text">2026.07.08</div>
+            <p>每天少玩一小时游戏，多背单词、看课本，不求一下子变优秀，每天进步一点点就够了。</p>
+        </div>
+    </div>
+
+    <!-- 留言板 -->
+    <div class="block" id="message">
+        <h3>💬 访客留言</h3>
+        <textarea id="msg-input" placeholder="在这里写下你的留言，鼓励我也好，分享游戏、学习心得都行~"></textarea>
+        <button id="send-btn">提交留言</button>
+        <div id="msg-list"></div>
+    </div>
+</div>
+
+<footer>
+    © 2026 赵思博个人博客 | 部署于 GitHub Pages
+</footer>
+
+<script>
+// 1. 放假倒计时（修改这里的时间）
+const targetDate = new Date(2026, 7, 20, 0, 0, 0);
+function updateTime() {
+    const now = new Date();
+    let diff = targetDate - now;
+    if(diff <= 0) {
+        document.getElementById("d").innerText = "00";
+        document.getElementById("h").innerText = "00";
+        document.getElementById("m").innerText = "00";
+        document.getElementById("s").innerText = "00";
+        return;
+    }
+    const day = Math.floor(diff / (1000*60*60*24));
+    const hour = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const min = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const sec = Math.floor((diff % (1000*60)) / 1000);
+    const fill = n => n<10 ? "0"+n : n;
+    document.getElementById("d").innerText = fill(day);
+    document.getElementById("h").innerText = fill(hour);
+    document.getElementById("m").innerText = fill(min);
+    document.getElementById("s").innerText = fill(sec);
+}
+updateTime();
+setInterval(updateTime,1000);
+
+// 2. 本地留言（刷新页面不会消失）
+const msgArea = document.getElementById("msg-input");
+const sendBtn = document.getElementById("send-btn");
+const msgWrap = document.getElementById("msg-list");
+// 读取本地存储留言
+function loadMsg() {
+    const data = localStorage.getItem("blogMsg");
+    if(!data) return [];
+    return JSON.parse(data);
+}
+// 渲染留言
+function renderMsg() {
+    const list = loadMsg();
+    msgWrap.innerHTML = "";
+    list.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "msg-item";
+        div.innerText = item;
+        msgWrap.appendChild(div);
+    })
+}
+renderMsg();
+// 提交留言
+sendBtn.onclick = function(){
+    const text = msgArea.value.trim();
+    if(!text) return alert("请输入留言内容！");
+    const arr = loadMsg();
+    arr.push(text);
+    localStorage.setItem("blogMsg", JSON.stringify(arr));
+    msgArea.value = "";
+    renderMsg();
+}
+</script>
+</body>
+</html>
